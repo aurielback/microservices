@@ -17,13 +17,13 @@ public class InventoryController {
     private final InventoryService inventoryService;
 
 
-    @GetMapping("/{sku-code}")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public boolean isInStock(@PathVariable("sku-code") String skuCode) {
-        return inventoryService.isInStock(skuCode);
+    public List<InventoryResponse> isInStock(@RequestParam List<String> listOfskuCodes) {
+        return inventoryService.isInStock(listOfskuCodes);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<InventoryResponse> getAllIntentories() {
         return inventoryService.getAllInventories();
